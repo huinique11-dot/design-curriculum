@@ -33,6 +33,8 @@
             #right-panel { width: 100% !important; height: auto !important; overflow: visible !important; padding: 0 !important; margin: 0 !important; }
             .a4-paper { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
         }
+        /* 안내 문구 스타일 */
+        .guide-text { font-size: 0.85rem; color: #475569; margin-top: 0.25rem; margin-bottom: 0.75rem; line-height: 1.4; }
     </style>
 </head>
 <body class="flex flex-col lg:flex-row lg:h-screen lg:overflow-hidden font-sans">
@@ -46,7 +48,8 @@
         <form id="lesson-form" class="space-y-6 sm:space-y-8">
             
             <section class="bg-teal_light p-4 sm:p-6 rounded-xl border border-teal/20">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-teal text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
+                <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-teal text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
+                <p class="guide-text">수업의 뼈대가 될 기초 정보를 설정합니다. 우리 아이들의 발달 단계에 맞는 영역을 고민해 보세요.</p>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">수업 제목</label>
@@ -72,10 +75,11 @@
             </section>
 
             <section class="bg-gray-50 p-4 sm:p-6 rounded-xl border border-gray-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
-                <div class="space-y-4">
+                <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 성취기준 풀이 (Unpacking)</h2>
+                <p class="guide-text">국가 교육과정의 성취기준 문장을 쪼개어, 아이들이 <b>무엇을 알아야 하고(명사)</b>, <b>무엇을 할 수 있어야 하는지(동사)</b> 명확히 발라내는 과정입니다.</p>
+                <div class="space-y-4 mt-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1">성취기준 선택 (직접 입력 가능)</label>
+                        <label class="block text-sm font-semibold mb-1">성취기준 선택</label>
                         <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm bg-white"></select>
                         <textarea id="in-standard-custom" rows="2" class="hidden w-full p-2 mt-2 border border-navy rounded focus:ring-2 focus:ring-navy outline-none text-sm" placeholder="성취기준을 직접 입력하세요."></textarea>
                         
@@ -87,20 +91,22 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
-                            <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 형식">
+                            <p class="text-xs text-slate-500 mb-1">Q. 이 성취기준을 달성하려면 학생은 <b>어떤 내용(What)</b>을 알아야 할까요?</p>
+                            <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 역사적 배경">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-orange-600 mb-1">동사 (수행/기능)</label>
-                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 구별하다, 표현하다">
+                            <p class="text-xs text-slate-500 mb-1">Q. 이 성취기준을 달성했음을 <b>어떤 행동(How)</b>으로 증명하게 할까요?</p>
+                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 표현하다, 비교하다, 비평하다">
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="bg-blue-50 p-4 sm:p-6 rounded-xl border border-blue-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-blue-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 삶과의 연계 (Real-world Connection)</h2>
-                <p class="text-xs text-blue-600 mb-4 font-bold">※ 2022 개정 핵심 방향: 수업을 아이들의 실제 삶, 세계와 연결합니다.</p>
-                <div class="space-y-4">
+                <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-blue-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 삶과의 연계 (Real-world Connection)</h2>
+                <p class="guide-text">2022 개정 교육과정의 핵심 방향입니다. 교실 안의 지식이 교실 밖 아이들의 진짜 삶(전 지구적 문제나 일상)과 어떻게 연결될 수 있을지 맥락을 설정합니다.</p>
+                <div class="space-y-4 mt-4">
                     <div class="flex flex-col sm:flex-row gap-4">
                         <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">글로벌 맥락 (IB MYP)</label>
@@ -114,15 +120,17 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1">나만의 연계 방안 (자유 서술 / 직접 입력)</label>
-                        <textarea id="in-life" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 우리 동네의 소음 공해 문제를 해결하는 음악적 방안 찾기"></textarea>
+                        <label class="block text-sm font-semibold mb-1">나만의 연계 방안 (구체화)</label>
+                        <p class="text-xs text-blue-600 mb-1">이 수업이 우리 동네, 학교, 또는 아이들의 일상 문제와 어떻게 닿아있나요?</p>
+                        <textarea id="in-life" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 층간 소음 문제를 이웃과 소통하는 음악적 방법으로 해결해 보기"></textarea>
                     </div>
                 </div>
             </section>
 
             <section class="bg-amber-50 p-4 sm:p-6 rounded-xl border border-amber-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 개념 기반 탐구 (Conceptual Lens)</h2>
-                <div class="space-y-4">
+                <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 개념 기반 탐구 (Conceptual Lens)</h2>
+                <p class="guide-text">사실적 지식을 넘어, 전이 가능한(다른 상황에도 적용할 수 있는) 깊은 '개념적 이해'로 이끄는 단계입니다. 어떤 렌즈를 통해 세상을 바라보게 할까요?</p>
+                <div class="space-y-4 mt-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
                         <select id="in-lens-select" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500"></select>
@@ -130,20 +138,40 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-1">탐구 진술문 (Statement of Inquiry)</label>
+                        <p class="text-xs text-amber-700 mb-1">이 단원이 끝났을 때 아이들이 머릿속에 가져가야 할 <b>단 하나의 큰 생각(Big Idea)</b>을 적어보세요.</p>
                         <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="학생들은 [탐구렌즈]를 통해 [삶과의 연계 맥락]이 [결과]함을 이해할 것이다."></textarea>
                     </div>
                 </div>
             </section>
 
             <section class="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">5</span> 수행평가 설계 (GRASPS)</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div><label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label><input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 목표"></div>
-                    <div><label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label><input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생의 가상 역할"></div>
-                    <div><label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label><input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="결과물 공유 대상"></div>
-                    <div><label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label><input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 맥락/상황"></div>
-                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">P (Product, 산출물)</label><input type="text" id="in-p" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="최종 결과물 (예: 웹앱, 영상)"></div>
-                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label><input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="성공 기준 및 루브릭 요약"></div>
+                <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">5</span> 수행평가 설계 (GRASPS)</h2>
+                <p class="guide-text">전통적 지필 평가에서 벗어나, 학생이 실제 현실과 유사한 상황 속에서 역할을 맡아 결과물을 만들어내는 참평가(Authentic Assessment)를 설계합니다.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label>
+                        <input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 수행과제의 실제적 목표는?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label>
+                        <input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생이 맡을 가상의 직업/역할은?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label>
+                        <input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 결과물을 보여줄 대상(타겟)은?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label>
+                        <input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생들이 직면한 구체적인 문제 상황은?">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-bold text-teal mb-1">P (Product, 산출물)</label>
+                        <input type="text" id="in-p" class="w-full p-2 text-sm border border-teal-300 focus:border-teal rounded bg-teal_light" placeholder="최종적으로 제출하거나 발표할 결과물은? (예: 팟캐스트, 포스터, 작곡 앱)">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label>
+                        <input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 과제가 성공적이라고 판단할 채점 기준(루브릭)은?">
+                    </div>
                 </div>
             </section>
         </form>
@@ -238,7 +266,6 @@
                 "정체성과 관계", "공간과 시간에서의 방향", "개인적/문화적 표현",
                 "과학적/기술적 혁신", "세계화와 지속가능성", "공정성과 발달"
             ],
-            // ★ SDGs 데이터 추가 완료
             sdgs: [
                 "1. 빈곤 종식", "2. 기아 해소", "3. 건강과 웰빙", "4. 양질의 교육",
                 "5. 성평등", "6. 깨끗한 물과 위생", "7. 적정가격의 깨끗한 에너지", 
@@ -271,14 +298,12 @@
             }
         };
 
-        // UI 기본 텍스트 세팅
         document.getElementById('page-title').textContent = `${curriculumData.subject}수업 디자인 도우미`;
         document.getElementById('ui-subject-title').textContent = curriculumData.subject;
         document.getElementById('ui-subject-sub').textContent = curriculumData.subject;
         document.getElementById('out-subject-title').textContent = curriculumData.subject;
         document.getElementById('footer-subject').textContent = curriculumData.subject;
 
-        // 드롭다운 + 커스텀입력 공통 함수
         function populateSelectWithCustom(baseId, dataArray) {
             const selectEl = document.getElementById(`in-${baseId}-select`);
             const customEl = document.getElementById(`in-${baseId}-custom`);
@@ -301,16 +326,15 @@
             selectEl.addEventListener('change', updateOutput);
             customEl.addEventListener('input', updateOutput);
             
-            selectEl.selectedIndex = 1; // 기본값 첫 번째 항목
+            selectEl.selectedIndex = 1; 
             updateOutput();
         }
 
         populateSelectWithCustom('domain', curriculumData.domains);
         populateSelectWithCustom('lens', curriculumData.lenses);
         populateSelectWithCustom('context', curriculumData.contexts);
-        populateSelectWithCustom('sdg', curriculumData.sdgs); // SDGs 연결 완료!
+        populateSelectWithCustom('sdg', curriculumData.sdgs); 
 
-        // 성취기준 로직
         const schoolSelect = document.getElementById('in-school');
         const standardSelect = document.getElementById('in-standard');
         const standardCustom = document.getElementById('in-standard-custom');
@@ -350,7 +374,6 @@
         standardCustom.addEventListener('input', updateStandardDisplay);
         updateStandards();
 
-        // 텍스트 인풋 동기화 (life 추가됨)
         const normalMappings = ['title', 'noun', 'verb', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
         normalMappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
@@ -363,7 +386,6 @@
             }
         });
 
-        // 노션 연동용 JSON 캡처
         function saveToNotion() {
             function getVal(id) {
                 let sel = document.getElementById(`in-${id}-select`);
