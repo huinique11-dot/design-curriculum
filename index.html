@@ -326,7 +326,8 @@
             selectEl.addEventListener('change', updateOutput);
             customEl.addEventListener('input', updateOutput);
             
-            selectEl.selectedIndex = 1; 
+            // ★ 수정된 부분: 기본값을 0번째 항목("- 선택 안 함 -")으로 설정합니다.
+            selectEl.selectedIndex = 0; 
             updateOutput();
         }
 
@@ -351,7 +352,8 @@
             options.forEach(std => standardSelect.add(new Option(std, std)));
             standardSelect.add(new Option("✎ 성취기준 직접 입력...", "custom"));
 
-            standardSelect.selectedIndex = 1;
+            // ★ 수정된 부분: 성취기준 기본값도 0번째 항목("- 선택 안 함 -")으로 설정합니다.
+            standardSelect.selectedIndex = 0;
             updateStandardDisplay();
         }
 
