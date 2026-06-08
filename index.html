@@ -10,9 +10,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        cream: '#FFFDF7', navy: '#0f172a', teal: '#0d9488', teal_light: '#f0fdfa'
-                    },
+                    colors: { cream: '#FFFDF7', navy: '#0f172a', teal: '#0d9488', teal_light: '#f0fdfa' },
                     fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] }
                 }
             }
@@ -66,7 +64,8 @@
                         </div>
                         <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">내용 체계 영역</label>
-                            <select id="in-domain" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none"></select>
+                            <select id="in-domain-select" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none"></select>
+                            <input type="text" id="in-domain-custom" class="hidden w-full p-2 mt-2 border border-teal-400 rounded focus:ring-2 focus:ring-teal outline-none bg-white" placeholder="영역 직접 입력">
                         </div>
                     </div>
                 </div>
@@ -76,8 +75,9 @@
                 <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1">성취기준 선택</label>
+                        <label class="block text-sm font-semibold mb-1">성취기준 선택 (직접 입력 가능)</label>
                         <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm bg-white"></select>
+                        <textarea id="in-standard-custom" rows="2" class="hidden w-full p-2 mt-2 border border-navy rounded focus:ring-2 focus:ring-navy outline-none text-sm" placeholder="성취기준을 직접 입력하세요."></textarea>
                         
                         <div class="mt-2 p-3 bg-white border border-blue-200 rounded text-sm text-blue-900 leading-relaxed font-medium shadow-inner" id="full-standard-box">
                             성취기준 전체 내용이 여기에 표시됩니다.
@@ -97,35 +97,46 @@
                 </div>
             </section>
 
-            <section class="bg-amber-50 p-4 sm:p-6 rounded-xl border border-amber-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 개념 기반 탐구 (IB MYP)</h2>
+            <section class="bg-blue-50 p-4 sm:p-6 rounded-xl border border-blue-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-blue-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 삶과의 연계 (Real-world Connection)</h2>
+                <p class="text-xs text-blue-600 mb-4 font-bold">※ 2022 개정 핵심 방향: 수업을 아이들의 실제 삶, 세계와 연결합니다.</p>
                 <div class="space-y-4">
                     <div class="flex flex-col sm:flex-row gap-4">
                         <div class="w-full sm:w-1/2">
-                            <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
-                            <select id="in-lens" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500"></select>
+                            <label class="block text-sm font-semibold mb-1">글로벌 맥락 (IB MYP)</label>
+                            <select id="in-context-select" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-blue-500"></select>
+                            <input type="text" id="in-context-custom" class="hidden w-full p-2 mt-2 border border-blue-400 rounded outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="글로벌 맥락 직접 입력">
                         </div>
                         <div class="w-full sm:w-1/2">
-                            <label class="block text-sm font-semibold mb-1">글로벌 맥락 (Global Context)</label>
-                            <select id="in-context" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
-                                <option>정체성과 관계</option>
-                                <option>공간과 시간에서의 방향</option>
-                                <option>개인적/문화적 표현</option>
-                                <option>과학적/기술적 혁신</option>
-                                <option>세계화와 지속가능성</option>
-                                <option>공정성과 발달</option>
-                            </select>
+                            <label class="block text-sm font-semibold mb-1">지속가능발전목표 (UN SDGs)</label>
+                            <select id="in-sdg-select" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-blue-500"></select>
+                            <input type="text" id="in-sdg-custom" class="hidden w-full p-2 mt-2 border border-blue-400 rounded outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="SDGs 직접 입력">
                         </div>
                     </div>
                     <div>
+                        <label class="block text-sm font-semibold mb-1">나만의 연계 방안 (자유 서술 / 직접 입력)</label>
+                        <textarea id="in-life" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 우리 동네의 소음 공해 문제를 해결하는 음악적 방안 찾기"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-amber-50 p-4 sm:p-6 rounded-xl border border-amber-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 개념 기반 탐구 (Conceptual Lens)</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
+                        <select id="in-lens-select" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500"></select>
+                        <input type="text" id="in-lens-custom" class="hidden w-full p-2 mt-2 border border-amber-400 rounded outline-none focus:ring-2 focus:ring-amber-500 bg-white" placeholder="개념 렌즈 직접 입력">
+                    </div>
+                    <div>
                         <label class="block text-sm font-semibold mb-1">탐구 진술문 (Statement of Inquiry)</label>
-                        <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="학생들은 [탐구렌즈]를 통해 [글로벌 맥락]이 [결과]함을 이해할 것이다."></textarea>
+                        <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="학생들은 [탐구렌즈]를 통해 [삶과의 연계 맥락]이 [결과]함을 이해할 것이다."></textarea>
                     </div>
                 </div>
             </section>
 
             <section class="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200">
-                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 수행평가 설계 (GRASPS)</h2>
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">5</span> 수행평가 설계 (GRASPS)</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label><input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 목표"></div>
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label><input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생의 가상 역할"></div>
@@ -145,60 +156,69 @@
 
     <div id="right-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto bg-gray-200 p-4 sm:p-8 flex justify-center">
         <div class="a4-paper relative text-navy">
-            <div class="text-center mb-8 border-b-2 border-navy pb-4">
-                <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">개념 기반 탐구 <span id="out-subject-title">과목</span>수업 디자인서</h2>
+            <div class="text-center mb-6 border-b-2 border-navy pb-4">
+                <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">2022 개정 기반 <span id="out-subject-title">과목</span>수업 디자인서</h2>
                 <h1 id="out-title" class="text-2xl sm:text-4xl font-extrabold break-words">수업 제목이 표시됩니다</h1>
             </div>
 
-            <div class="space-y-6">
-                <div class="flex border-t border-b border-gray-300 py-3 text-sm sm:text-base">
+            <div class="space-y-5">
+                <div class="flex border-t border-b border-gray-300 py-2 text-sm sm:text-base">
                     <div class="w-1/3 sm:w-1/4 font-bold text-teal">대상 / 영역</div>
-                    <div class="w-2/3 sm:w-3/4"><span id="out-school">중학교 1~3학년</span> / <span id="out-domain">연주</span></div>
+                    <div class="w-2/3 sm:w-3/4"><span id="out-school">중학교 1~3학년</span> / <span id="out-domain">-</span></div>
                 </div>
 
                 <div>
-                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-teal mb-3">1. 2022 개정 교육과정 성취기준</h3>
-                    <p id="out-standard" class="p-3 border border-gray-200 rounded mb-3 text-sm sm:text-base text-gray-700 bg-white">성취기준을 선택해주세요.</p>
-                    <div class="flex flex-col sm:flex-row gap-3 text-sm">
-                        <div class="flex-1 p-3 bg-teal_light rounded border border-teal/20">
-                            <span class="font-bold text-teal block mb-1">알아야 할 지식 (명사)</span>
+                    <h3 class="text-base font-bold bg-gray-100 p-2 border-l-4 border-teal mb-2">1. 교육과정 성취기준</h3>
+                    <p id="out-standard" class="p-2 border border-gray-200 rounded mb-2 text-sm sm:text-base text-gray-700 bg-white">성취기준이 선택되지 않았습니다.</p>
+                    <div class="flex flex-col sm:flex-row gap-2 text-sm">
+                        <div class="flex-1 p-2 bg-teal_light rounded border border-teal/20">
+                            <span class="font-bold text-teal block">알아야 할 지식 (명사)</span>
                             <span id="out-noun" class="text-gray-700">-</span>
                         </div>
-                        <div class="flex-1 p-3 bg-orange-50 rounded border border-orange-200">
-                            <span class="font-bold text-orange-600 block mb-1">할 수 있어야 할 기능 (동사)</span>
+                        <div class="flex-1 p-2 bg-orange-50 rounded border border-orange-200">
+                            <span class="font-bold text-orange-600 block">할 수 있어야 할 기능 (동사)</span>
                             <span id="out-verb" class="text-gray-700">-</span>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-amber-500 mb-3">2. 개념 기반 탐구 구조 (IB MYP)</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3 text-sm sm:text-base">
-                        <div class="p-2 border-b border-gray-200"><span class="font-bold text-gray-500 w-20 sm:w-24 inline-block">탐구 렌즈</span> <span id="out-lens" class="font-bold break-words">관계 (Relationship)</span></div>
-                        <div class="p-2 border-b border-gray-200"><span class="font-bold text-gray-500 w-24 sm:w-28 inline-block">글로벌 맥락</span> <span id="out-context" class="font-bold break-words">정체성과 관계</span></div>
+                    <h3 class="text-base font-bold bg-gray-100 p-2 border-l-4 border-blue-500 mb-2">2. 삶과의 연계 (Real-world Connection)</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2 text-sm">
+                        <div class="p-2 border border-gray-200 rounded bg-white"><span class="font-bold text-blue-600 block mb-1">글로벌 맥락</span> <span id="out-context" class="font-bold break-words">-</span></div>
+                        <div class="p-2 border border-gray-200 rounded bg-white"><span class="font-bold text-green-600 block mb-1">UN 지속가능발전목표 (SDGs)</span> <span id="out-sdg" class="font-bold break-words">-</span></div>
                     </div>
-                    <div class="p-4 bg-amber-50 rounded border border-amber-200 text-center">
-                        <span class="text-xs text-amber-600 font-bold block mb-1">탐구 진술문 (Statement of Inquiry)</span>
-                        <p id="out-soi" class="font-bold text-base sm:text-lg text-slate-800 break-words">탐구 진술문이 입력됩니다.</p>
+                    <div class="p-2 bg-blue-50 border border-blue-100 rounded text-sm">
+                        <span class="font-bold text-gray-600 block">구체적 연계 방안</span>
+                        <span id="out-life" class="text-gray-800 break-words">-</span>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-slate-700 mb-3">3. 백워드 수행평가 설계 (GRASPS)</h3>
-                    <table class="w-full text-left border-collapse text-sm sm:text-base">
+                    <h3 class="text-base font-bold bg-gray-100 p-2 border-l-4 border-amber-500 mb-2">3. 개념 기반 탐구 (Conceptual Lens)</h3>
+                    <div class="p-2 border-b border-gray-200 text-sm mb-2"><span class="font-bold text-gray-500 mr-2">탐구 렌즈:</span> <span id="out-lens" class="font-bold break-words">-</span></div>
+                    <div class="p-3 bg-amber-50 rounded border border-amber-200 text-center">
+                        <span class="text-xs text-amber-600 font-bold block mb-1">탐구 진술문 (Statement of Inquiry)</span>
+                        <p id="out-soi" class="font-bold sm:text-lg text-slate-800 break-words">-</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base font-bold bg-gray-100 p-2 border-l-4 border-slate-700 mb-2">4. 백워드 수행평가 설계 (GRASPS)</h3>
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
                         <tbody>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">목표 (G)</th><td class="p-2 sm:p-3 break-words" id="out-g">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">역할 (R)</th><td class="p-2 sm:p-3 break-words" id="out-r">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">청중 (A)</th><td class="p-2 sm:p-3 break-words" id="out-a">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">상황 (S)</th><td class="p-2 sm:p-3 break-words" id="out-s1">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-teal bg-teal_light font-bold">산출물 (P)</th><td class="p-2 sm:p-3 font-bold text-teal break-words" id="out-p">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">기준 (S)</th><td class="p-2 sm:p-3 break-words" id="out-s2">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">목표 (G)</th><td class="p-2 break-words" id="out-g">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">역할 (R)</th><td class="p-2 break-words" id="out-r">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">청중 (A)</th><td class="p-2 break-words" id="out-a">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">상황 (S)</th><td class="p-2 break-words" id="out-s1">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-teal bg-teal_light font-bold">산출물 (P)</th><td class="p-2 font-bold text-teal break-words" id="out-p">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">기준 (S)</th><td class="p-2 break-words" id="out-s2">-</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             
-            <div class="mt-8 text-center text-gray-400 text-xs sm:text-sm font-bold">
+            <div class="mt-6 text-center text-gray-400 text-xs font-bold">
                 전국<span id="footer-subject">과목</span>수업자랑 - Lesson Designer
             </div>
         </div>
@@ -206,18 +226,26 @@
 
     <script>
         const curriculumData = {
-            subject: "음악", // "과학", "미술", "체육" 등으로 변경 가능
-            
-            // 과목별 내용 체계 영역
+            subject: "음악",
             domains: ["연주", "감상", "창작"], 
-            
-            // 과목별 주요 개념 (탐구 렌즈)
             lenses: [
                 "관계 (Relationship)", "정체성 (Identity)", "상호작용 (Interaction)", 
-                "변형 (Change)", "표현 (Expression)", "소통 (Communication)"
+                "변형 (Change)", "표현 (Expression)", "소통 (Communication)",
+                "형식 (Form)", "기능 (Function)", "관점 (Perspective)", "미학 (Aesthetics)",
+                "구조 (Structure)", "패턴 (Pattern)", "균형 (Balance)", "혁신 (Innovation)"
             ],
-
-            // 학년별 2022 개정 성취기준
+            contexts: [
+                "정체성과 관계", "공간과 시간에서의 방향", "개인적/문화적 표현",
+                "과학적/기술적 혁신", "세계화와 지속가능성", "공정성과 발달"
+            ],
+            // ★ SDGs 데이터 추가 완료
+            sdgs: [
+                "1. 빈곤 종식", "2. 기아 해소", "3. 건강과 웰빙", "4. 양질의 교육",
+                "5. 성평등", "6. 깨끗한 물과 위생", "7. 적정가격의 깨끗한 에너지", 
+                "8. 좋은 일자리와 경제성장", "9. 산업, 혁신 및 인프라", "10. 불평등 감소",
+                "11. 지속가능한 도시와 지역사회", "12. 책임있는 소비와 생산", "13. 기후 행동",
+                "14. 해양 생태계 보전", "15. 육상 생태계 보전", "16. 평화, 정의, 강력한 제도", "17. 글로벌 파트너십"
+            ],
             standards: {
                 "초3-4": [
                     "[4음01-01] 음악의 특징을 이해하고 소리, 신체, 그림 등으로 표현한다.",
@@ -243,87 +271,123 @@
             }
         };
 
-        // ==============================================================
-        // 아래는 데이터를 바탕으로 화면을 그리는 시스템 코드입니다 (수정 X)
-        // ==============================================================
-        
-        // 1. 화면에 과목명 세팅
+        // UI 기본 텍스트 세팅
         document.getElementById('page-title').textContent = `${curriculumData.subject}수업 디자인 도우미`;
         document.getElementById('ui-subject-title').textContent = curriculumData.subject;
         document.getElementById('ui-subject-sub').textContent = curriculumData.subject;
         document.getElementById('out-subject-title').textContent = curriculumData.subject;
         document.getElementById('footer-subject').textContent = curriculumData.subject;
 
-        // 2. 영역 및 렌즈 드롭다운 세팅
-        const domainSelect = document.getElementById('in-domain');
-        curriculumData.domains.forEach(d => {
-            let opt = document.createElement('option'); opt.value = d; opt.textContent = d;
-            domainSelect.appendChild(opt);
-        });
+        // 드롭다운 + 커스텀입력 공통 함수
+        function populateSelectWithCustom(baseId, dataArray) {
+            const selectEl = document.getElementById(`in-${baseId}-select`);
+            const customEl = document.getElementById(`in-${baseId}-custom`);
+            const outEl = document.getElementById(`out-${baseId}`);
 
-        const lensSelect = document.getElementById('in-lens');
-        curriculumData.lenses.forEach(l => {
-            let opt = document.createElement('option'); opt.value = l; opt.textContent = l;
-            lensSelect.appendChild(opt);
-        });
+            selectEl.innerHTML = '';
+            selectEl.add(new Option("- 선택 안 함 -", ""));
+            dataArray.forEach(item => selectEl.add(new Option(item, item)));
+            selectEl.add(new Option("✎ 직접 입력...", "custom"));
 
-        // 3. 학교급 및 성취기준 세팅 로직
+            function updateOutput() {
+                if(selectEl.value === 'custom') {
+                    customEl.classList.remove('hidden');
+                    outEl.textContent = customEl.value || '-';
+                } else {
+                    customEl.classList.add('hidden');
+                    outEl.textContent = selectEl.value || '-';
+                }
+            }
+            selectEl.addEventListener('change', updateOutput);
+            customEl.addEventListener('input', updateOutput);
+            
+            selectEl.selectedIndex = 1; // 기본값 첫 번째 항목
+            updateOutput();
+        }
+
+        populateSelectWithCustom('domain', curriculumData.domains);
+        populateSelectWithCustom('lens', curriculumData.lenses);
+        populateSelectWithCustom('context', curriculumData.contexts);
+        populateSelectWithCustom('sdg', curriculumData.sdgs); // SDGs 연결 완료!
+
+        // 성취기준 로직
         const schoolSelect = document.getElementById('in-school');
         const standardSelect = document.getElementById('in-standard');
-        const fullStandardBox = document.getElementById('full-standard-box'); // 새로 추가된 전체 보기 박스
+        const standardCustom = document.getElementById('in-standard-custom');
+        const fullStandardBox = document.getElementById('full-standard-box');
         const outStandard = document.getElementById('out-standard');
         const outSchool = document.getElementById('out-school');
 
         function updateStandards() {
             const selectedSchool = schoolSelect.value;
-            const options = curriculumData.standards[selectedSchool] || ["성취기준이 없습니다."];
+            const options = curriculumData.standards[selectedSchool] || [];
             
             standardSelect.innerHTML = '';
-            options.forEach(std => {
-                const opt = document.createElement('option'); opt.value = std; opt.textContent = std;
-                standardSelect.appendChild(opt);
-            });
+            standardSelect.add(new Option("- 선택 안 함 -", ""));
+            options.forEach(std => standardSelect.add(new Option(std, std)));
+            standardSelect.add(new Option("✎ 성취기준 직접 입력...", "custom"));
 
-            // 드롭다운이 바뀌면 전체 내용 박스와 오른쪽 A4 용지도 같이 업데이트
+            standardSelect.selectedIndex = 1;
             updateStandardDisplay();
         }
 
         function updateStandardDisplay() {
-            const currentText = standardSelect.value;
-            fullStandardBox.textContent = currentText; // 왼쪽 전체 읽기 박스
-            outStandard.textContent = currentText;     // 오른쪽 A4 용지
+            let currentText = "";
+            if (standardSelect.value === 'custom') {
+                standardCustom.classList.remove('hidden');
+                currentText = standardCustom.value;
+            } else {
+                standardCustom.classList.add('hidden');
+                currentText = standardSelect.value;
+            }
+            fullStandardBox.textContent = currentText || '성취기준이 비어있습니다.';
+            outStandard.textContent = currentText || '-';
             outSchool.textContent = schoolSelect.options[schoolSelect.selectedIndex].text;
         }
 
         schoolSelect.addEventListener('change', updateStandards);
         standardSelect.addEventListener('change', updateStandardDisplay);
-
-        // 초기화 실행
+        standardCustom.addEventListener('input', updateStandardDisplay);
         updateStandards();
 
-        // 4. 나머지 입력칸 실시간 동기화 (기존 동일)
-        const mappings = ['title', 'domain', 'noun', 'verb', 'lens', 'context', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
-        mappings.forEach(id => {
+        // 텍스트 인풋 동기화 (life 추가됨)
+        const normalMappings = ['title', 'noun', 'verb', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
+        normalMappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
             const outputEl = document.getElementById('out-' + id);
             if(inputEl && outputEl) {
                 inputEl.addEventListener('input', (e) => {
                     outputEl.textContent = e.target.value || '-';
                     if(id === 'title' && !e.target.value) outputEl.textContent = '수업 제목이 표시됩니다';
-                    if(id === 'soi' && !e.target.value) outputEl.textContent = '탐구 진술문이 입력됩니다.';
                 });
             }
         });
 
+        // 노션 연동용 JSON 캡처
         function saveToNotion() {
-            let lessonData = {};
-            mappings.forEach(id => { lessonData[id] = document.getElementById('in-' + id).value; });
-            lessonData['subject'] = curriculumData.subject;
-            lessonData['school'] = schoolSelect.options[schoolSelect.selectedIndex].text;
-            lessonData['standard'] = standardSelect.value;
+            function getVal(id) {
+                let sel = document.getElementById(`in-${id}-select`);
+                let cus = document.getElementById(`in-${id}-custom`);
+                if(sel && cus) return sel.value === 'custom' ? cus.value : sel.value;
+                let stdSel = document.getElementById(`in-standard`);
+                let stdCus = document.getElementById(`in-standard-custom`);
+                if(id === 'standard') return stdSel.value === 'custom' ? stdCus.value : stdSel.value;
+                return document.getElementById('in-' + id).value;
+            }
+
+            let lessonData = {
+                subject: curriculumData.subject,
+                school: schoolSelect.options[schoolSelect.selectedIndex].text,
+                domain: getVal('domain'),
+                standard: getVal('standard'),
+                lens: getVal('lens'),
+                context: getVal('context'),
+                sdg: getVal('sdg')
+            };
+            normalMappings.forEach(id => lessonData[id] = document.getElementById('in-' + id).value);
 
             console.log("🚀 노션 전송용 데이터 (JSON):", JSON.stringify(lessonData, null, 2));
-            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)\n추후 Notion API와 연결됩니다.");
+            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)\n\n추후 노션(Notion)에 연동됩니다.");
         }
     </script>
 </body>
