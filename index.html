@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전국음악수업자랑: 음악수업 디자인 도우미</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFFDF7',
+                        navy: '#0f172a',
+                        teal: '#0d9488',
+                        teal_light: '#f0fdfa'
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FFFDF7; color: #0f172a; }
+        
+        /* 스크롤바 예쁘게 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* A4 용지 비율 및 그림자 */
+        .a4-paper {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            padding: 20mm;
+        }
+
+        /* 인쇄 시 스타일 (왼쪽 폼 숨기고 오른쪽 A4만 출력) */
+        @media print {
+            body { background: white; }
+            #left-panel, #print-btn, #save-btn { display: none !important; }
+            #right-panel { width: 100% !important; height: auto !important; overflow: visible !important; padding: 0 !important; margin: 0 !important; }
+            .a4-paper { box-shadow: none; margin: 0; padding: 0; min-height: auto; width: 100%; }
+        }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden">
+
+    <div id="left-panel" class="w-1/2 h-full overflow-y-auto p-8 border-r border-gray-200 bg-white">
+        <div class="mb-8 border-b-4 border-teal pb-4">
+            <h1 class="text-3xl font-bold text-navy mb-2">🎤 전국음악수업자랑</h1>
+            <p class="text-gray-600 font-medium">음악수업 디자인 도우미 (2022 개정 & IB MYP & GRASPS)</p>
+        </div>
+
+        <form id="lesson-form" class="space-y-8">
+            
+            <section class="bg-teal_light p-6 rounded-xl border border-teal/20">
+                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-teal text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">수업 제목</label>
+                        <input type="text" id="in-title" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 소리로 그리는 우리 동네 풍경">
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1/2">
+                            <label class="block text-sm font-semibold mb-1">학교급</label>
+                            <select id="in-school" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none">
+                                <option>초등학교 3~4학년</option>
+                                <option>초등학교 5~6학년</option>
+                                <option selected>중학교 1~3학년</option>
+                                <option>고등학교 공통과목</option>
+                                <option>고등학교 선택과목</option>
+                            </select>
+                        </div>
+                        <div class="w-1/2">
+                            <label class="block text-sm font-semibold mb-1">내용 체계 영역</label>
+                            <select id="in-domain" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none">
+                                <option>연주</option>
+                                <option>감상</option>
+                                <option>창작</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">성취기준 문장</label>
+                        <textarea id="in-standard" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none" placeholder="예: 음악을 듣고 음악 요소와 개념을 구별하여 표현한다."></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
+                            <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 형식, 맥락">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-orange-600 mb-1">동사 (수행/기능)</label>
+                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 구별하다, 표현하다, 비평하다">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-amber-50 p-6 rounded-xl border border-amber-200">
+                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 개념 기반 탐구 (IB MYP)</h2>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-1/2">
+                            <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
+                            <select id="in-lens" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
+                                <option>관계 (Relationship)</option>
+                                <option>정체성 (Identity)</option>
+                                <option>상호작용 (Interaction)</option>
+                                <option>변형 (Change)</option>
+                                <option>표현 (Expression)</option>
+                                <option>소통 (Communication)</option>
+                            </select>
+                        </div>
+                        <div class="w-1/2">
+                            <label class="block text-sm font-semibold mb-1">글로벌 맥락 (Global Context)</label>
+                            <select id="in-context" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
+                                <option>정체성과 관계</option>
+                                <option>공간과 시간에서의 방향</option>
+                                <option>개인적/문화적 표현</option>
+                                <option>과학적/기술적 혁신</option>
+                                <option>세계화와 지속가능성</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">탐구 진술문 (Statement of Inquiry)</label>
+                        <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring
