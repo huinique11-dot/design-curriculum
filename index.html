@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전국음악수업자랑: 음악수업 디자인 도우미</title>
+    <title id="page-title">수업 디자인 도우미</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -11,14 +11,9 @@
             theme: {
                 extend: {
                     colors: {
-                        cream: '#FFFDF7',
-                        navy: '#0f172a',
-                        teal: '#0d9488',
-                        teal_light: '#f0fdfa'
+                        cream: '#FFFDF7', navy: '#0f172a', teal: '#0d9488', teal_light: '#f0fdfa'
                     },
-                    fontFamily: {
-                        sans: ['"Noto Sans KR"', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] }
                 }
             }
         }
@@ -28,15 +23,12 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .a4-paper {
             width: 100%; max-width: 210mm; min-height: 297mm;
             background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             margin: 0 auto; padding: 20mm;
         }
-        @media (max-width: 768px) {
-            .a4-paper { padding: 10mm; min-height: auto; }
-        }
+        @media (max-width: 768px) { .a4-paper { padding: 10mm; min-height: auto; } }
         @media print {
             body { background: white; overflow: visible !important; }
             #left-panel, #print-btn, #save-btn { display: none !important; }
@@ -49,8 +41,8 @@
 
     <div id="left-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto p-4 sm:p-8 border-b lg:border-b-0 lg:border-r border-gray-200 bg-white">
         <div class="mb-8 border-b-4 border-teal pb-4">
-            <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-2">🎤 전국음악수업자랑</h1>
-            <p class="text-sm sm:text-base text-gray-600 font-medium">음악수업 디자인 도우미 (2022 개정 & IB MYP & GRASPS)</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-2">🎤 전국<span id="ui-subject-title">과목</span>수업자랑</h1>
+            <p class="text-sm sm:text-base text-gray-600 font-medium"><span id="ui-subject-sub">과목</span>수업 디자인 도우미 (2022 개정 & IB MYP & GRASPS)</p>
         </div>
 
         <form id="lesson-form" class="space-y-6 sm:space-y-8">
@@ -74,11 +66,7 @@
                         </div>
                         <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">내용 체계 영역</label>
-                            <select id="in-domain" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none">
-                                <option>연주</option>
-                                <option>감상</option>
-                                <option>창작</option>
-                            </select>
+                            <select id="in-domain" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none"></select>
                         </div>
                     </div>
                 </div>
@@ -88,10 +76,14 @@
                 <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1">성취기준 선택 (학교급에 따라 자동 변경)</label>
-                        <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm break-words whitespace-normal">
-                            </select>
+                        <label class="block text-sm font-semibold mb-1">성취기준 선택</label>
+                        <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm bg-white"></select>
+                        
+                        <div class="mt-2 p-3 bg-white border border-blue-200 rounded text-sm text-blue-900 leading-relaxed font-medium shadow-inner" id="full-standard-box">
+                            성취기준 전체 내용이 여기에 표시됩니다.
+                        </div>
                     </div>
+                    
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
@@ -111,14 +103,7 @@
                     <div class="flex flex-col sm:flex-row gap-4">
                         <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
-                            <select id="in-lens" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
-                                <option>관계 (Relationship)</option>
-                                <option>정체성 (Identity)</option>
-                                <option>상호작용 (Interaction)</option>
-                                <option>변형 (Change)</option>
-                                <option>표현 (Expression)</option>
-                                <option>소통 (Communication)</option>
-                            </select>
+                            <select id="in-lens" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500"></select>
                         </div>
                         <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">글로벌 맥락 (Global Context)</label>
@@ -128,6 +113,7 @@
                                 <option>개인적/문화적 표현</option>
                                 <option>과학적/기술적 혁신</option>
                                 <option>세계화와 지속가능성</option>
+                                <option>공정성과 발달</option>
                             </select>
                         </div>
                     </div>
@@ -141,48 +127,26 @@
             <section class="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200">
                 <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 수행평가 설계 (GRASPS)</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label>
-                        <input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 목표">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label>
-                        <input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생의 가상 역할">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label>
-                        <input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="결과물 공유 대상">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label>
-                        <input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 맥락/상황">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-bold text-slate-700 mb-1">P (Product, 산출물)</label>
-                        <input type="text" id="in-p" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="최종 결과물 (예: 웹앱, 음원, 공연)">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label>
-                        <input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="성공 기준 및 루브릭 요약">
-                    </div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label><input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 목표"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label><input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생의 가상 역할"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label><input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="결과물 공유 대상"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label><input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 맥락/상황"></div>
+                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">P (Product, 산출물)</label><input type="text" id="in-p" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="최종 결과물 (예: 웹앱, 영상)"></div>
+                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label><input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="성공 기준 및 루브릭 요약"></div>
                 </div>
             </section>
         </form>
 
         <div class="mt-8 flex flex-col sm:flex-row gap-4 pb-10 lg:pb-4">
-            <button id="print-btn" onclick="window.print()" class="w-full sm:flex-1 bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition">
-                🖨️ PDF 굽기 (인쇄)
-            </button>
-            <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">
-                ✨ 노션에 자랑하기
-            </button>
+            <button id="print-btn" onclick="window.print()" class="w-full sm:flex-1 bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition">🖨️ PDF 굽기 (인쇄)</button>
+            <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">✨ 노션에 자랑하기</button>
         </div>
     </div>
 
     <div id="right-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto bg-gray-200 p-4 sm:p-8 flex justify-center">
         <div class="a4-paper relative text-navy">
             <div class="text-center mb-8 border-b-2 border-navy pb-4">
-                <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">개념 기반 탐구 음악수업 디자인서</h2>
+                <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">개념 기반 탐구 <span id="out-subject-title">과목</span>수업 디자인서</h2>
                 <h1 id="out-title" class="text-2xl sm:text-4xl font-extrabold break-words">수업 제목이 표시됩니다</h1>
             </div>
 
@@ -223,96 +187,125 @@
                     <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-slate-700 mb-3">3. 백워드 수행평가 설계 (GRASPS)</h3>
                     <table class="w-full text-left border-collapse text-sm sm:text-base">
                         <tbody>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">목표 (Goal)</th><td class="p-2 sm:p-3 break-words" id="out-g">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">역할 (Role)</th><td class="p-2 sm:p-3 break-words" id="out-r">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">청중 (Audience)</th><td class="p-2 sm:p-3 break-words" id="out-a">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">상황 (Situation)</th><td class="p-2 sm:p-3 break-words" id="out-s1">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-teal bg-teal_light font-bold">산출물 (Product)</th><td class="p-2 sm:p-3 font-bold text-teal break-words" id="out-p">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">기준 (Standards)</th><td class="p-2 sm:p-3 break-words" id="out-s2">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">목표 (G)</th><td class="p-2 sm:p-3 break-words" id="out-g">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">역할 (R)</th><td class="p-2 sm:p-3 break-words" id="out-r">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">청중 (A)</th><td class="p-2 sm:p-3 break-words" id="out-a">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">상황 (S)</th><td class="p-2 sm:p-3 break-words" id="out-s1">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-teal bg-teal_light font-bold">산출물 (P)</th><td class="p-2 sm:p-3 font-bold text-teal break-words" id="out-p">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">기준 (S)</th><td class="p-2 sm:p-3 break-words" id="out-s2">-</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             
             <div class="mt-8 text-center text-gray-400 text-xs sm:text-sm font-bold">
-                전국음악수업자랑 - Music Lesson Designer
+                전국<span id="footer-subject">과목</span>수업자랑 - Lesson Designer
             </div>
         </div>
     </div>
 
     <script>
-        // 2022 개정 음악과 성취기준 데이터 (학교급별 분류)
-        const standardsData = {
-            "초3-4": [
-                "[4음01-01] 음악의 특징을 이해하고 소리, 신체, 그림 등으로 표현한다.",
-                "[4음01-02] 상황에 어울리는 음악을 만들어 표현한다.",
-                "[4음02-01] 다양한 음악을 듣고 음악의 특징을 비교하여 설명한다.",
-                "[4음02-02] 생활 속에서 음악이 활용되는 사례를 찾아 발표한다.",
-                "[4음03-01] 소리, 음악, 몸의 움직임 등을 활용하여 창의적으로 표현한다."
+        const curriculumData = {
+            subject: "음악", // "과학", "미술", "체육" 등으로 변경 가능
+            
+            // 과목별 내용 체계 영역
+            domains: ["연주", "감상", "창작"], 
+            
+            // 과목별 주요 개념 (탐구 렌즈)
+            lenses: [
+                "관계 (Relationship)", "정체성 (Identity)", "상호작용 (Interaction)", 
+                "변형 (Change)", "표현 (Expression)", "소통 (Communication)"
             ],
-            "초5-6": [
-                "[6음01-01] 다양한 음악의 특징을 살려 노래 부르거나 악기로 연주한다.",
-                "[6음01-02] 상황이나 이야기에 어울리는 음악을 만들어 표현한다.",
-                "[6음02-01] 다양한 음악을 듣고 음악의 특징과 쓰임을 설명한다.",
-                "[6음02-02] 우리 음악 문화의 특징을 찾아 발표한다."
-            ],
-            "중1-3": [
-                "[9음01-01] 악곡의 특징을 살려 노래 부르거나 악기로 연주한다.",
-                "[9음01-02] 매체 및 디지털 기술을 활용하여 음악을 창작한다.",
-                "[9음02-01] 다양한 시대와 문화권의 음악을 듣고 음악의 특징과 역사적 배경을 설명한다.",
-                "[9음02-02] 음악과 다른 예술 영역의 연관성을 탐색하여 발표한다."
-            ],
-            "고등": [
-                "[12음01-01] 음악적 특징을 살려 연주하고, 연주 활동에 자발적으로 참여한다.",
-                "[12음01-02] 매체를 활용하여 음악을 창작하고 발표한다.",
-                "[12음02-01] 다양한 시대와 문화권의 음악을 비교하여 음악적 특징과 가치를 평한다."
-            ]
+
+            // 학년별 2022 개정 성취기준
+            standards: {
+                "초3-4": [
+                    "[4음01-01] 음악의 특징을 이해하고 소리, 신체, 그림 등으로 표현한다.",
+                    "[4음01-02] 상황에 어울리는 음악을 만들어 표현한다.",
+                    "[4음02-01] 다양한 음악을 듣고 음악의 특징을 비교하여 설명한다.",
+                    "[4음03-01] 소리, 음악, 몸의 움직임 등을 활용하여 창의적으로 표현한다."
+                ],
+                "초5-6": [
+                    "[6음01-01] 다양한 음악의 특징을 살려 노래 부르거나 악기로 연주한다.",
+                    "[6음01-02] 상황이나 이야기에 어울리는 음악을 만들어 표현한다.",
+                    "[6음02-01] 다양한 음악을 듣고 음악의 특징과 쓰임을 설명한다."
+                ],
+                "중1-3": [
+                    "[9음01-01] 악곡의 특징을 살려 노래 부르거나 악기로 연주한다.",
+                    "[9음01-02] 매체 및 디지털 기술을 활용하여 음악을 창작한다.",
+                    "[9음02-01] 다양한 시대와 문화권의 음악을 듣고 음악의 특징과 역사적 배경을 설명한다.",
+                    "[9음02-02] 음악과 다른 예술 영역의 연관성을 탐색하여 발표한다."
+                ],
+                "고등": [
+                    "[12음01-01] 음악적 특징을 살려 연주하고, 연주 활동에 자발적으로 참여한다.",
+                    "[12음02-01] 다양한 시대와 문화권의 음악을 비교하여 음악적 특징과 가치를 평한다."
+                ]
+            }
         };
 
+        // ==============================================================
+        // 아래는 데이터를 바탕으로 화면을 그리는 시스템 코드입니다 (수정 X)
+        // ==============================================================
+        
+        // 1. 화면에 과목명 세팅
+        document.getElementById('page-title').textContent = `${curriculumData.subject}수업 디자인 도우미`;
+        document.getElementById('ui-subject-title').textContent = curriculumData.subject;
+        document.getElementById('ui-subject-sub').textContent = curriculumData.subject;
+        document.getElementById('out-subject-title').textContent = curriculumData.subject;
+        document.getElementById('footer-subject').textContent = curriculumData.subject;
+
+        // 2. 영역 및 렌즈 드롭다운 세팅
+        const domainSelect = document.getElementById('in-domain');
+        curriculumData.domains.forEach(d => {
+            let opt = document.createElement('option'); opt.value = d; opt.textContent = d;
+            domainSelect.appendChild(opt);
+        });
+
+        const lensSelect = document.getElementById('in-lens');
+        curriculumData.lenses.forEach(l => {
+            let opt = document.createElement('option'); opt.value = l; opt.textContent = l;
+            lensSelect.appendChild(opt);
+        });
+
+        // 3. 학교급 및 성취기준 세팅 로직
         const schoolSelect = document.getElementById('in-school');
         const standardSelect = document.getElementById('in-standard');
+        const fullStandardBox = document.getElementById('full-standard-box'); // 새로 추가된 전체 보기 박스
         const outStandard = document.getElementById('out-standard');
         const outSchool = document.getElementById('out-school');
 
-        // 학교급 선택 시 성취기준 목록 업데이트 함수
         function updateStandards() {
             const selectedSchool = schoolSelect.value;
-            const options = standardsData[selectedSchool];
+            const options = curriculumData.standards[selectedSchool] || ["성취기준이 없습니다."];
             
-            // 드롭다운 초기화 및 새 옵션 추가
             standardSelect.innerHTML = '';
             options.forEach(std => {
-                const opt = document.createElement('option');
-                opt.value = std;
-                opt.textContent = std;
+                const opt = document.createElement('option'); opt.value = std; opt.textContent = std;
                 standardSelect.appendChild(opt);
             });
 
-            // 화면 표시 업데이트
-            outSchool.textContent = schoolSelect.options[schoolSelect.selectedIndex].text;
-            outStandard.textContent = standardSelect.value;
+            // 드롭다운이 바뀌면 전체 내용 박스와 오른쪽 A4 용지도 같이 업데이트
+            updateStandardDisplay();
         }
 
-        // 학교급 변경 이벤트 리스너
+        function updateStandardDisplay() {
+            const currentText = standardSelect.value;
+            fullStandardBox.textContent = currentText; // 왼쪽 전체 읽기 박스
+            outStandard.textContent = currentText;     // 오른쪽 A4 용지
+            outSchool.textContent = schoolSelect.options[schoolSelect.selectedIndex].text;
+        }
+
         schoolSelect.addEventListener('change', updateStandards);
+        standardSelect.addEventListener('change', updateStandardDisplay);
 
-        // 성취기준 변경 시 미리보기 자동 업데이트
-        standardSelect.addEventListener('change', (e) => {
-            outStandard.textContent = e.target.value;
-        });
-
-        // 초기 실행 시 중학교 데이터 로딩
+        // 초기화 실행
         updateStandards();
 
-        const mappings = [
-            'title', 'domain', 'noun', 'verb', 
-            'lens', 'context', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'
-        ];
-
+        // 4. 나머지 입력칸 실시간 동기화 (기존 동일)
+        const mappings = ['title', 'domain', 'noun', 'verb', 'lens', 'context', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
         mappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
             const outputEl = document.getElementById('out-' + id);
-            
             if(inputEl && outputEl) {
                 inputEl.addEventListener('input', (e) => {
                     outputEl.textContent = e.target.value || '-';
@@ -324,14 +317,13 @@
 
         function saveToNotion() {
             let lessonData = {};
-            mappings.forEach(id => {
-                lessonData[id] = document.getElementById('in-' + id).value;
-            });
+            mappings.forEach(id => { lessonData[id] = document.getElementById('in-' + id).value; });
+            lessonData['subject'] = curriculumData.subject;
             lessonData['school'] = schoolSelect.options[schoolSelect.selectedIndex].text;
             lessonData['standard'] = standardSelect.value;
 
             console.log("🚀 노션 전송용 데이터 (JSON):", JSON.stringify(lessonData, null, 2));
-            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)");
+            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)\n추후 Notion API와 연결됩니다.");
         }
     </script>
 </body>
