@@ -26,13 +26,11 @@
     <style>
         body { background-color: #FFFDF7; color: #0f172a; }
         
-        /* 스크롤바 예쁘게 */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* A4 용지 비율 및 그림자 */
         .a4-paper {
             width: 100%;
             max-width: 210mm;
@@ -43,34 +41,38 @@
             padding: 20mm;
         }
 
-        /* 인쇄 시 스타일 (왼쪽 폼 숨기고 오른쪽 A4만 출력) */
+        /* 모바일에서는 패딩 줄이기 */
+        @media (max-width: 768px) {
+            .a4-paper { padding: 10mm; min-height: auto; }
+        }
+
         @media print {
-            body { background: white; }
+            body { background: white; overflow: visible !important; }
             #left-panel, #print-btn, #save-btn { display: none !important; }
             #right-panel { width: 100% !important; height: auto !important; overflow: visible !important; padding: 0 !important; margin: 0 !important; }
-            .a4-paper { box-shadow: none; margin: 0; padding: 0; min-height: auto; width: 100%; }
+            .a4-paper { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
         }
     </style>
 </head>
-<body class="h-screen flex overflow-hidden">
+<body class="flex flex-col lg:flex-row lg:h-screen lg:overflow-hidden font-sans">
 
-    <div id="left-panel" class="w-1/2 h-full overflow-y-auto p-8 border-r border-gray-200 bg-white">
+    <div id="left-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto p-4 sm:p-8 border-b lg:border-b-0 lg:border-r border-gray-200 bg-white">
         <div class="mb-8 border-b-4 border-teal pb-4">
-            <h1 class="text-3xl font-bold text-navy mb-2">🎤 전국음악수업자랑</h1>
-            <p class="text-gray-600 font-medium">음악수업 디자인 도우미 (2022 개정 & IB MYP & GRASPS)</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-2">🎤 전국음악수업자랑</h1>
+            <p class="text-sm sm:text-base text-gray-600 font-medium">음악수업 디자인 도우미 (2022 개정 & IB MYP & GRASPS)</p>
         </div>
 
-        <form id="lesson-form" class="space-y-8">
+        <form id="lesson-form" class="space-y-6 sm:space-y-8">
             
-            <section class="bg-teal_light p-6 rounded-xl border border-teal/20">
-                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-teal text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
+            <section class="bg-teal_light p-4 sm:p-6 rounded-xl border border-teal/20">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-teal text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">수업 제목</label>
                         <input type="text" id="in-title" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 소리로 그리는 우리 동네 풍경">
                     </div>
-                    <div class="flex gap-4">
-                        <div class="w-1/2">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">학교급</label>
                             <select id="in-school" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none">
                                 <option>초등학교 3~4학년</option>
@@ -80,7 +82,7 @@
                                 <option>고등학교 선택과목</option>
                             </select>
                         </div>
-                        <div class="w-1/2">
+                        <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">내용 체계 영역</label>
                             <select id="in-domain" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none">
                                 <option>연주</option>
@@ -92,31 +94,31 @@
                 </div>
             </section>
 
-            <section class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
+            <section class="bg-gray-50 p-4 sm:p-6 rounded-xl border border-gray-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 2022 개정 성취기준 분석</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">성취기준 문장</label>
                         <textarea id="in-standard" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none" placeholder="예: 음악을 듣고 음악 요소와 개념을 구별하여 표현한다."></textarea>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
-                            <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 형식, 맥락">
+                            <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 형식">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-orange-600 mb-1">동사 (수행/기능)</label>
-                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 구별하다, 표현하다, 비평하다">
+                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 구별하다, 표현하다">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="bg-amber-50 p-6 rounded-xl border border-amber-200">
-                <h2 class="text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 개념 기반 탐구 (IB MYP)</h2>
+            <section class="bg-amber-50 p-4 sm:p-6 rounded-xl border border-amber-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 개념 기반 탐구 (IB MYP)</h2>
                 <div class="space-y-4">
-                    <div class="flex gap-4">
-                        <div class="w-1/2">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
                             <select id="in-lens" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
                                 <option>관계 (Relationship)</option>
@@ -127,7 +129,7 @@
                                 <option>소통 (Communication)</option>
                             </select>
                         </div>
-                        <div class="w-1/2">
+                        <div class="w-full sm:w-1/2">
                             <label class="block text-sm font-semibold mb-1">글로벌 맥락 (Global Context)</label>
                             <select id="in-context" class="w-full p-2 border border-gray-300 rounded outline-none focus:border-amber-500">
                                 <option>정체성과 관계</option>
@@ -140,4 +142,142 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-1">탐구 진술문 (Statement of Inquiry)</label>
-                        <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring
+                        <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="학생들은 [탐구렌즈]를 통해 [글로벌 맥락]이 [결과]함을 이해할 것이다."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 수행평가 설계 (GRASPS)</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label>
+                        <input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 목표">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label>
+                        <input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생의 가상 역할">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label>
+                        <input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="결과물 공유 대상">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label>
+                        <input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="실제적 맥락/상황">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-bold text-slate-700 mb-1">P (Product, 산출물)</label>
+                        <input type="text" id="in-p" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="최종 결과물 (예: 웹앱, 음원, 공연)">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label>
+                        <input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="성공 기준 및 루브릭 요약">
+                    </div>
+                </div>
+            </section>
+
+        </form>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 pb-10 lg:pb-4">
+            <button id="print-btn" onclick="window.print()" class="w-full sm:flex-1 bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition">
+                🖨️ PDF 굽기 (인쇄)
+            </button>
+            <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">
+                ✨ 노션에 자랑하기
+            </button>
+        </div>
+    </div>
+
+    <div id="right-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto bg-gray-200 p-4 sm:p-8 flex justify-center">
+        <div class="a4-paper relative text-navy">
+            
+            <div class="text-center mb-8 border-b-2 border-navy pb-4">
+                <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">개념 기반 탐구 음악수업 디자인서</h2>
+                <h1 id="out-title" class="text-2xl sm:text-4xl font-extrabold break-words">수업 제목이 표시됩니다</h1>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex border-t border-b border-gray-300 py-3 text-sm sm:text-base">
+                    <div class="w-1/3 sm:w-1/4 font-bold text-teal">대상 / 영역</div>
+                    <div class="w-2/3 sm:w-3/4"><span id="out-school">중학교 1~3학년</span> / <span id="out-domain">연주</span></div>
+                </div>
+
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-teal mb-3">1. 2022 개정 교육과정 성취기준</h3>
+                    <p id="out-standard" class="p-3 border border-gray-200 rounded mb-3 text-sm sm:text-base text-gray-700 bg-white">성취기준 문장</p>
+                    <div class="flex flex-col sm:flex-row gap-3 text-sm">
+                        <div class="flex-1 p-3 bg-teal_light rounded border border-teal/20">
+                            <span class="font-bold text-teal block mb-1">알아야 할 지식 (명사)</span>
+                            <span id="out-noun" class="text-gray-700">-</span>
+                        </div>
+                        <div class="flex-1 p-3 bg-orange-50 rounded border border-orange-200">
+                            <span class="font-bold text-orange-600 block mb-1">할 수 있어야 할 기능 (동사)</span>
+                            <span id="out-verb" class="text-gray-700">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-amber-500 mb-3">2. 개념 기반 탐구 구조 (IB MYP)</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3 text-sm sm:text-base">
+                        <div class="p-2 border-b border-gray-200"><span class="font-bold text-gray-500 w-20 sm:w-24 inline-block">탐구 렌즈</span> <span id="out-lens" class="font-bold break-words">관계 (Relationship)</span></div>
+                        <div class="p-2 border-b border-gray-200"><span class="font-bold text-gray-500 w-24 sm:w-28 inline-block">글로벌 맥락</span> <span id="out-context" class="font-bold break-words">정체성과 관계</span></div>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded border border-amber-200 text-center">
+                        <span class="text-xs text-amber-600 font-bold block mb-1">탐구 진술문 (Statement of Inquiry)</span>
+                        <p id="out-soi" class="font-bold text-base sm:text-lg text-slate-800 break-words">탐구 진술문이 입력됩니다.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold bg-gray-100 p-2 border-l-4 border-slate-700 mb-3">3. 백워드 수행평가 설계 (GRASPS)</h3>
+                    <table class="w-full text-left border-collapse text-sm sm:text-base">
+                        <tbody>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">목표 (Goal)</th><td class="p-2 sm:p-3 break-words" id="out-g">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">역할 (Role)</th><td class="p-2 sm:p-3 break-words" id="out-r">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">청중 (Audience)</th><td class="p-2 sm:p-3 break-words" id="out-a">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">상황 (Situation)</th><td class="p-2 sm:p-3 break-words" id="out-s1">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-teal bg-teal_light font-bold">산출물 (Product)</th><td class="p-2 sm:p-3 font-bold text-teal break-words" id="out-p">-</td></tr>
+                            <tr class="border-b border-gray-200"><th class="p-2 sm:p-3 w-1/3 sm:w-1/4 text-slate-700 bg-slate-50">기준 (Standards)</th><td class="p-2 sm:p-3 break-words" id="out-s2">-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-gray-400 text-xs sm:text-sm font-bold">
+                전국음악수업자랑 - Music Lesson Designer
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mappings = [
+            'title', 'school', 'domain', 'standard', 'noun', 'verb', 
+            'lens', 'context', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'
+        ];
+
+        mappings.forEach(id => {
+            const inputEl = document.getElementById('in-' + id);
+            const outputEl = document.getElementById('out-' + id);
+            
+            if(inputEl && outputEl) {
+                inputEl.addEventListener('input', (e) => {
+                    outputEl.textContent = e.target.value || '-';
+                    if(id === 'title' && !e.target.value) outputEl.textContent = '수업 제목이 표시됩니다';
+                    if(id === 'soi' && !e.target.value) outputEl.textContent = '탐구 진술문이 입력됩니다.';
+                });
+            }
+        });
+
+        function saveToNotion() {
+            let lessonData = {};
+            mappings.forEach(id => {
+                lessonData[id] = document.getElementById('in-' + id).value;
+            });
+            console.log("🚀 노션 전송용 데이터 (JSON):", JSON.stringify(lessonData, null, 2));
+            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)");
+        }
+    </script>
+</body>
+</html>
