@@ -40,6 +40,9 @@
 
     <div id="left-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto p-4 sm:p-8 border-b lg:border-b-0 lg:border-r border-gray-200 bg-white">
         <div class="mb-8 border-b-4 border-teal pb-4">
+            <div class="inline-block bg-teal_light text-teal border border-teal/20 font-bold px-3 py-1.5 rounded-full text-xs sm:text-sm mb-3 shadow-sm">
+                🌱 다정한 세상을 만드는 우리의 수업
+            </div>
             <h1 class="text-2xl sm:text-3xl font-bold text-navy mb-2">💡 <span id="ui-subject-title">과목</span> 수업 디자인 도우미</h1>
             <p class="text-sm sm:text-base text-gray-600 font-medium">2022 개정 교육과정 & IB MYP & 백워드(GRASPS) 기반</p>
         </div>
@@ -47,8 +50,7 @@
         <form id="lesson-form" class="space-y-6 sm:space-y-8">
             <section class="bg-teal_light p-4 sm:p-6 rounded-xl border border-teal/20">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-teal text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
-                <p class="guide-text">수업의 뼈대가 될 기초 정보를 설정합니다. 우리 아이들의 발달 단계에 맞는 영역을 고민해 보세요.</p>
-                <div class="space-y-4">
+                <div class="space-y-4 mt-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">수업 제목</label>
                         <input type="text" id="in-title" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 소리로 그리는 우리 동네 풍경">
@@ -74,10 +76,9 @@
 
             <section class="bg-gray-50 p-4 sm:p-6 rounded-xl border border-gray-200">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-navy text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span> 성취기준 풀이 (Unpacking)</h2>
-                <p class="guide-text">국가 교육과정의 성취기준 문장을 쪼개어, 아이들이 <b>무엇을 알아야 하고(명사)</b>, <b>무엇을 할 수 있어야 하는지(동사)</b> 명확히 발라내는 과정입니다.</p>
                 <div class="space-y-4 mt-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1">성취기준 선택</label>
+                        <label class="block text-sm font-semibold mb-1">성취기준 선택 <span class="text-xs text-indigo-600 font-bold ml-2">※ 선택 시 루브릭 자동 생성!</span></label>
                         <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm bg-white"></select>
                         <textarea id="in-standard-custom" rows="2" class="hidden w-full p-2 mt-2 border border-navy rounded focus:ring-2 focus:ring-navy outline-none text-sm" placeholder="성취기준을 직접 입력하세요."></textarea>
                         <div class="mt-2 p-3 bg-white border border-blue-200 rounded text-sm text-blue-900 leading-relaxed font-medium shadow-inner" id="full-standard-box">
@@ -87,12 +88,10 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
-                            <p class="text-xs text-slate-500 mb-1">Q. 달성해야 할 <b>주요 지식(What)</b>은 무엇인가요?</p>
                             <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 역사적 배경">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-orange-600 mb-1">동사 (수행/기능)</label>
-                            <p class="text-xs text-slate-500 mb-1">Q. 이해의 6가지 측면 중 어떤 <b>행동(How)</b>으로 증명할까요?</p>
                             <div class="flex gap-2 mb-2">
                                 <select id="in-verb-category" class="w-1/2 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none text-sm bg-white">
                                     <option value="">- 측면 선택 -</option>
@@ -116,7 +115,6 @@
 
             <section class="bg-blue-50 p-4 sm:p-6 rounded-xl border border-blue-200">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-blue-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span> 삶과의 연계 (Real-world Connection)</h2>
-                <p class="guide-text">2022 개정 교육과정의 핵심 방향입니다. 교실 안의 지식이 교실 밖 아이들의 진짜 삶(전 지구적 문제나 일상)과 어떻게 연결될 수 있을지 맥락을 설정합니다.</p>
                 <div class="space-y-4 mt-4">
                     <div class="flex flex-col sm:flex-row gap-4">
                         <div class="w-full sm:w-1/2">
@@ -132,7 +130,6 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-1">나만의 연계 방안 (구체화)</label>
-                        <p class="text-xs text-blue-600 mb-1">이 수업이 우리 동네, 학교, 또는 아이들의 일상 문제와 어떻게 닿아있나요?</p>
                         <textarea id="in-life" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="예: 층간 소음 문제를 이웃과 소통하는 음악적 방법으로 해결해 보기"></textarea>
                     </div>
                 </div>
@@ -140,7 +137,6 @@
 
             <section class="bg-amber-50 p-4 sm:p-6 rounded-xl border border-amber-200">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-amber-500 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">4</span> 개념 기반 탐구 (Conceptual Lens)</h2>
-                <p class="guide-text">사실적 지식을 넘어, 전이 가능한(다른 상황에도 적용할 수 있는) 깊은 '개념적 이해'로 이끄는 단계입니다. 어떤 렌즈를 통해 세상을 바라보게 할까요?</p>
                 <div class="space-y-4 mt-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">탐구 렌즈 (주요 개념)</label>
@@ -149,7 +145,6 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-1">탐구 진술문 (Statement of Inquiry)</label>
-                        <p class="text-xs text-amber-700 mb-1">이 단원이 끝났을 때 아이들이 머릿속에 가져가야 할 <b>단 하나의 큰 생각(Big Idea)</b>을 적어보세요.</p>
                         <textarea id="in-soi" rows="2" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="학생들은 [탐구렌즈]를 통해 [삶과의 연계 맥락]이 [결과]함을 이해할 것이다."></textarea>
                     </div>
                 </div>
@@ -157,14 +152,31 @@
 
             <section class="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-200">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">5</span> 수행평가 설계 (GRASPS)</h2>
-                <p class="guide-text">전통적 지필 평가에서 벗어나, 학생이 실제 현실과 유사한 상황 속에서 역할을 맡아 결과물을 만들어내는 참평가(Authentic Assessment)를 설계합니다.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label><input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 수행과제의 실제적 목표는?"></div>
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label><input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생이 맡을 가상의 직업/역할은?"></div>
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label><input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 결과물을 보여줄 대상(타겟)은?"></div>
                     <div><label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label><input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생들이 직면한 구체적인 문제 상황은?"></div>
-                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-teal mb-1">P (Product, 산출물)</label><input type="text" id="in-p" class="w-full p-2 text-sm border border-teal-300 focus:border-teal rounded bg-teal_light" placeholder="최종적으로 제출하거나 발표할 결과물은? (예: 팟캐스트, 포스터, 작곡 앱)"></div>
-                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label><input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 과제가 성공적이라고 판단할 채점 기준(루브릭)은?"></div>
+                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-teal mb-1">P (Product, 산출물)</label><input type="text" id="in-p" class="w-full p-2 text-sm border border-teal-300 focus:border-teal rounded bg-teal_light" placeholder="최종적으로 제출하거나 발표할 결과물은? (예: 작곡 앱)"></div>
+                    
+                    <div class="sm:col-span-2 bg-white p-3 rounded border border-gray-200">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">S (Standards, 평가 기준 및 루브릭)</label>
+                        <p class="text-xs text-indigo-500 mb-3">※ 성취기준을 선택하면 교육과정에 명시된 3단계 성취수준이 자동으로 채워집니다. 자유롭게 수정하세요.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <span class="font-bold text-blue-600 w-12 pt-1 shrink-0">상(A)</span>
+                                <textarea id="in-rubric-a" rows="2" class="w-full p-2 text-sm border border-blue-200 rounded focus:ring-1 focus:ring-blue-500 outline-none bg-blue-50" placeholder="상 수준 도달 기준"></textarea>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="font-bold text-green-600 w-12 pt-1 shrink-0">중(B)</span>
+                                <textarea id="in-rubric-b" rows="2" class="w-full p-2 text-sm border border-green-200 rounded focus:ring-1 focus:ring-green-500 outline-none bg-green-50" placeholder="중 수준 도달 기준"></textarea>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="font-bold text-orange-600 w-12 pt-1 shrink-0">하(C)</span>
+                                <textarea id="in-rubric-c" rows="2" class="w-full p-2 text-sm border border-orange-200 rounded focus:ring-1 focus:ring-orange-500 outline-none bg-orange-50" placeholder="하 수준 도달 기준"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </form>
@@ -174,14 +186,13 @@
             <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">✨ 노션에 저장하기</button>
         </div>
         
-        <div class="text-center text-sm text-gray-400 font-medium pb-8 lg:pb-4">
-            &copy; 휘니크프로젝트
-        </div>
+        <div class="text-center text-sm text-gray-400 font-medium pb-8 lg:pb-4">&copy; 휘니크프로젝트</div>
     </div>
 
     <div id="right-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto bg-gray-200 p-4 sm:p-8 flex justify-center">
         <div class="a4-paper relative text-navy flex flex-col">
             <div class="text-center mb-6 border-b-2 border-navy pb-4">
+                <div class="text-teal font-bold text-xs sm:text-sm mb-2 tracking-wider">다정한 세상을 만드는 우리의 수업</div>
                 <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">2022 개정 기반 <span id="out-subject-title">과목</span> 수업 디자인서</h2>
                 <h1 id="out-title" class="text-2xl sm:text-4xl font-extrabold break-words">수업 제목이 표시됩니다</h1>
             </div>
@@ -237,7 +248,14 @@
                             <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">청중 (A)</th><td class="p-2 break-words" id="out-a">-</td></tr>
                             <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">상황 (S)</th><td class="p-2 break-words" id="out-s1">-</td></tr>
                             <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-teal bg-teal_light font-bold">산출물 (P)</th><td class="p-2 font-bold text-teal break-words" id="out-p">-</td></tr>
-                            <tr class="border-b border-gray-200"><th class="p-2 w-1/4 text-slate-700 bg-slate-50">기준 (S)</th><td class="p-2 break-words" id="out-s2">-</td></tr>
+                            <tr class="border-b border-gray-200">
+                                <th class="p-2 w-1/4 text-slate-700 bg-slate-50">기준 (S)</th>
+                                <td class="p-2 text-sm break-words bg-white">
+                                    <div class="mb-2 pb-1 border-b border-dashed border-gray-200"><span class="font-bold text-blue-600 inline-block w-8">상:</span> <span id="out-rubric-a" class="text-gray-800">-</span></div>
+                                    <div class="mb-2 pb-1 border-b border-dashed border-gray-200"><span class="font-bold text-green-600 inline-block w-8">중:</span> <span id="out-rubric-b" class="text-gray-800">-</span></div>
+                                    <div><span class="font-bold text-orange-600 inline-block w-8">하:</span> <span id="out-rubric-c" class="text-gray-800">-</span></div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -252,31 +270,30 @@
 
     <script>
         const curriculumData = {
-            subject: "음악", // 👈 원하는 과목명으로 자유롭게 변경하세요!
+            subject: "음악",
             domains: ["연주", "감상", "창작"], 
             lenses: [
-                "관계 (Relationship)", "정체성 (Identity)", "상호작용 (Interaction)", 
-                "변형 (Change)", "표현 (Expression)", "소통 (Communication)",
-                "형식 (Form)", "기능 (Function)", "관점 (Perspective)", "미학 (Aesthetics)",
-                "구조 (Structure)", "패턴 (Pattern)", "균형 (Balance)", "혁신 (Innovation)"
+                "관계 (Relationship)", "정체성 (Identity)", "상호작용 (Interaction)", "변형 (Change)", 
+                "표현 (Expression)", "소통 (Communication)", "형식 (Form)", "기능 (Function)", 
+                "관점 (Perspective)", "미학 (Aesthetics)", "구조 (Structure)", "패턴 (Pattern)", 
+                "균형 (Balance)", "혁신 (Innovation)"
             ],
             contexts: [
                 "정체성과 관계", "공간과 시간에서의 방향", "개인적/문화적 표현",
                 "과학적/기술적 혁신", "세계화와 지속가능성", "공정성과 발달"
             ],
             sdgs: [
-                "1. 빈곤 종식", "2. 기아 해소", "3. 건강과 웰빙", "4. 양질의 교육",
-                "5. 성평등", "6. 깨끗한 물과 위생", "7. 적정가격의 깨끗한 에너지", 
-                "8. 좋은 일자리와 경제성장", "9. 산업, 혁신 및 인프라", "10. 불평등 감소",
-                "11. 지속가능한 도시와 지역사회", "12. 책임있는 소비와 생산", "13. 기후 행동",
-                "14. 해양 생태계 보전", "15. 육상 생태계 보전", "16. 평화, 정의, 강력한 제도", "17. 글로벌 파트너십"
+                "1. 빈곤 종식", "2. 기아 해소", "3. 건강과 웰빙", "4. 양질의 교육", "5. 성평등", 
+                "6. 깨끗한 물과 위생", "7. 적정가격의 깨끗한 에너지", "8. 좋은 일자리와 경제성장", 
+                "9. 산업, 혁신 및 인프라", "10. 불평등 감소", "11. 지속가능한 도시와 지역사회", 
+                "12. 책임있는 소비와 생산", "13. 기후 행동", "14. 해양 생태계 보전", 
+                "15. 육상 생태계 보전", "16. 평화, 정의, 강력한 제도", "17. 글로벌 파트너십"
             ],
             standards: {
                 "초3-4": [
                     "[4음01-01] 음악의 특징을 이해하고 소리, 신체, 그림 등으로 표현한다.",
                     "[4음01-02] 상황에 어울리는 음악을 만들어 표현한다.",
-                    "[4음02-01] 다양한 음악을 듣고 음악의 특징을 비교하여 설명한다.",
-                    "[4음03-01] 소리, 음악, 몸의 움직임 등을 활용하여 창의적으로 표현한다."
+                    "[4음02-01] 다양한 음악을 듣고 음악의 특징을 비교하여 설명한다."
                 ],
                 "초5-6": [
                     "[6음01-01] 다양한 음악의 특징을 살려 노래 부르거나 악기로 연주한다.",
@@ -293,6 +310,38 @@
                     "[12음01-01] 음악적 특징을 살려 연주하고, 연주 활동에 자발적으로 참여한다.",
                     "[12음02-01] 다양한 시대와 문화권의 음악을 비교하여 음악적 특징과 가치를 평한다."
                 ]
+            },
+            rubrics: {
+                "[4음01-01] 음악의 특징을 이해하고 소리, 신체, 그림 등으로 표현한다.": {
+                    A: "음악의 특징을 깊이 있게 이해하고, 소리, 신체, 그림 등을 활용하여 개성 있고 창의적으로 표현한다.",
+                    B: "음악의 특징을 이해하고, 소리, 신체, 그림 등으로 적절하게 표현한다.",
+                    C: "음악의 특징을 부분적으로 이해하고, 소리, 신체, 그림 등으로 표현하려고 노력한다."
+                },
+                "[6음01-01] 다양한 음악의 특징을 살려 노래 부르거나 악기로 연주한다.": {
+                    A: "다양한 음악의 고유한 특징을 명확히 이해하고, 이를 살려 노래 부르거나 악기로 완성도 높게 연주한다.",
+                    B: "다양한 음악의 특징을 이해하고, 이를 살려 노래 부르거나 악기로 연주한다.",
+                    C: "다양한 음악의 특징을 부분적으로 이해하고, 교사의 안내에 따라 노래 부르거나 악기로 연주한다."
+                },
+                "[9음01-01] 악곡의 특징을 살려 노래 부르거나 악기로 연주한다.": {
+                    A: "다양한 주법과 여러 음악의 고유한 표현 기법을 충분히 이해하여 느낌을 살려 노래 부르거나 악기로 개성 있게 연주한다.",
+                    B: "다양한 주법과 여러 음악의 고유한 표현 기법을 이해하여 노래 부르거나 악기로 연주한다.",
+                    C: "다양한 주법과 여러 음악의 고유한 표현 기법을 부분적으로 이해하여 노래 부르거나 악기로 연주한다."
+                },
+                "[9음01-02] 매체 및 디지털 기술을 활용하여 음악을 창작한다.": {
+                    A: "음악적 아이디어를 바탕으로 매체 및 디지털 기술을 능숙하게 활용하여 독창적인 음악을 창작한다.",
+                    B: "매체 및 디지털 기술을 활용하여 음악을 창작한다.",
+                    C: "교사의 안내를 받아 매체 및 디지털 기술을 활용하여 음악의 일부를 창작한다."
+                },
+                "[9음02-01] 다양한 시대와 문화권의 음악을 듣고 음악의 특징과 역사적 배경을 설명한다.": {
+                    A: "다양한 시대와 문화권의 음악을 듣고, 음악적 특징과 역사적 배경의 관계를 논리적으로 비교하여 설명한다.",
+                    B: "다양한 시대와 문화권의 음악을 듣고, 음악의 특징과 역사적 배경을 설명한다.",
+                    C: "다양한 시대와 문화권의 음악을 듣고, 음악의 특징이나 역사적 배경 중 일부를 설명한다."
+                },
+                "[12음01-01] 음악적 특징을 살려 연주하고, 연주 활동에 자발적으로 참여한다.": {
+                    A: "악곡의 음악적 특징을 정확히 분석하고 이를 살려 탁월하게 연주하며, 연주 활동에 주도적이고 자발적으로 참여한다.",
+                    B: "악곡의 음악적 특징을 이해하고 이를 살려 연주하며, 연주 활동에 자발적으로 참여한다.",
+                    C: "악곡의 음악적 특징을 부분적으로 이해하여 연주하고, 연주 활동에 참여한다."
+                }
             }
         };
 
@@ -346,6 +395,13 @@
         const fullStandardBox = document.getElementById('full-standard-box');
         const outStandard = document.getElementById('out-standard');
         const outSchool = document.getElementById('out-school');
+        
+        const inRubricA = document.getElementById('in-rubric-a');
+        const inRubricB = document.getElementById('in-rubric-b');
+        const inRubricC = document.getElementById('in-rubric-c');
+        const outRubricA = document.getElementById('out-rubric-a');
+        const outRubricB = document.getElementById('out-rubric-b');
+        const outRubricC = document.getElementById('out-rubric-c');
 
         function updateStandards() {
             const selectedSchool = schoolSelect.value;
@@ -372,7 +428,26 @@
             fullStandardBox.textContent = currentText || '성취기준이 비어있습니다.';
             outStandard.textContent = currentText || '-';
             outSchool.textContent = schoolSelect.options[schoolSelect.selectedIndex].text;
+
+            if (curriculumData.rubrics && curriculumData.rubrics[currentText]) {
+                const rub = curriculumData.rubrics[currentText];
+                inRubricA.value = rub.A;
+                inRubricB.value = rub.B;
+                inRubricC.value = rub.C;
+            } else {
+                inRubricA.value = "";
+                inRubricB.value = "";
+                inRubricC.value = "";
+            }
+            
+            outRubricA.textContent = inRubricA.value || '-';
+            outRubricB.textContent = inRubricB.value || '-';
+            outRubricC.textContent = inRubricC.value || '-';
         }
+
+        inRubricA.addEventListener('input', e => outRubricA.textContent = e.target.value || '-');
+        inRubricB.addEventListener('input', e => outRubricB.textContent = e.target.value || '-');
+        inRubricC.addEventListener('input', e => outRubricC.textContent = e.target.value || '-');
 
         schoolSelect.addEventListener('change', updateStandards);
         standardSelect.addEventListener('change', updateStandardDisplay);
@@ -417,7 +492,7 @@
         verbSelect.addEventListener('change', updateVerbOutput);
         verbCustom.addEventListener('input', updateVerbOutput);
 
-        const normalMappings = ['title', 'noun', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
+        const normalMappings = ['title', 'noun', 'life', 'soi', 'g', 'r', 'a', 's1', 'p'];
         normalMappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
             const outputEl = document.getElementById('out-' + id);
@@ -455,7 +530,10 @@
                 verb: finalVerb, 
                 lens: getVal('lens'),
                 context: getVal('context'),
-                sdg: getVal('sdg')
+                sdg: getVal('sdg'),
+                rubric_a: inRubricA.value,
+                rubric_b: inRubricB.value,
+                rubric_c: inRubricC.value
             };
             normalMappings.forEach(id => lessonData[id] = document.getElementById('in-' + id).value);
 
