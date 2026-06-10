@@ -29,7 +29,7 @@
         @media (max-width: 768px) { .a4-paper { padding: 10mm; min-height: auto; } }
         @media print {
             body { background: white; overflow: visible !important; }
-            #left-panel, #print-btn, #save-btn { display: none !important; }
+            #left-panel, #save-print-btn, .no-print-area { display: none !important; }
             #right-panel { width: 100% !important; height: auto !important; overflow: visible !important; padding: 0 !important; margin: 0 !important; }
             .a4-paper { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
         }
@@ -181,12 +181,16 @@
             </section>
         </form>
 
-        <div class="mt-8 flex flex-col sm:flex-row gap-4 pb-6">
-            <button id="print-btn" onclick="window.print()" class="w-full sm:flex-1 bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition">🖨️ PDF 굽기 (인쇄)</button>
-            <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">✨ 노션에 저장하기</button>
+        <div class="mt-8 pb-6 no-print-area">
+            <p class="text-xs text-center text-teal-700 font-bold mb-3 bg-teal-50 py-2 rounded">
+                ※ 아래 버튼을 누르면 인쇄용 PDF가 생성되며, 디자인된 내용은 동료 교사들을 위해 '수업 아카이브(노션)'에 함께 공유됩니다.
+            </p>
+            <button id="save-print-btn" onclick="saveAndPrint()" class="w-full bg-teal text-white font-extrabold py-4 px-4 rounded-xl shadow-lg hover:bg-teal-600 transition text-lg flex justify-center items-center gap-2">
+                <span>✨ PDF 저장 + 수업 아카이브에 올리기</span>
+            </button>
         </div>
         
-        <div class="text-center pb-8 lg:pb-4">
+        <div class="text-center pb-8 lg:pb-4 no-print-area">
             <a href="https://open.kakao.com/o/s2x3vwIf" target="_blank" class="inline-block bg-[#FEE500] text-[#371D1E] font-bold px-5 py-2.5 rounded-full mb-3 shadow hover:bg-[#FADA0A] transition text-sm">
                 💬 앱 개선을 위한 피드백 남기기 (오픈채팅)
             </a>
@@ -511,7 +515,8 @@
             }
         });
 
-        function saveToNotion() {
+        // ★ 통합된 데이터 전송 및 인쇄 기능 ★
+        function saveAndPrint() {
             function getVal(id) {
                 let sel = document.getElementById(`in-${id}-select`);
                 let cus = document.getElementById(`in-${id}-custom`);
@@ -542,10 +547,48 @@
                 rubric_b: inRubricB.value,
                 rubric_c: inRubricC.value
             };
+            const normalMappings = ['title', 'noun', 'life', 'soi', 'g', 'r', 'a', 's1', 'p'];
             normalMappings.forEach(id => lessonData[id] = document.getElementById('in-' + id).value);
 
-            console.log("🚀 노션 전송용 데이터 (JSON):", JSON.stringify(lessonData, null, 2));
-            alert("수업 데이터가 캡처되었습니다! (PC의 F12 콘솔창 확인)\n\n추후 노션(Notion)에 연동됩니다.");
+            // =========================================================================
+            // 🚀 선생님의 Make 웹훅 주소를 아래 따옴표 안에 넣어주세요!
+            // =========================================================================
+            const WEBHOOK_URL = "https://hook.us1.make.com/여기에선생님의웹훅주소를넣으세요";
+
+            if (WEBHOOK_URL.includes("여기에선생님의웹훅주소를넣으세요")) {
+                alert("앗! 소스 코드 하단에 Make 웹훅 주소를 먼저 입력해 주세요!");
+                return;
+            }
+
+            const btn = document.getElementById('save-print-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "<span>⏳ 아카이브에 올리는 중...</span>";
+            btn.disabled = true;
+
+            // Make로 데이터를 전송합니다.
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(lessonData)
+            })
+            .then(response => {
+                if(!response.ok) {
+                    console.error("아카이브 전송 실패 (상태 코드: " + response.status + ")");
+                }
+            })
+            .catch(error => {
+                console.error("인터넷 연결 오류:", error);
+            })
+            .finally(() => {
+                // 전송 처리가 끝나면(성공이든 실패든) 버튼을 원래대로 돌리고 PDF 인쇄 창을 띄웁니다.
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // 브라우저의 인쇄 다이얼로그 호출
+                setTimeout(() => {
+                    window.print();
+                }, 300);
+            });
         }
     </script>
 </body>
