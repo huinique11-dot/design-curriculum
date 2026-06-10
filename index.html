@@ -33,7 +33,6 @@
             #right-panel { width: 100% !important; height: auto !important; overflow: visible !important; padding: 0 !important; margin: 0 !important; }
             .a4-paper { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
         }
-        /* 안내 문구 스타일 */
         .guide-text { font-size: 0.85rem; color: #475569; margin-top: 0.25rem; margin-bottom: 0.75rem; line-height: 1.4; }
     </style>
 </head>
@@ -91,13 +90,28 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
-                            <p class="text-xs text-slate-500 mb-1">Q. 이 성취기준을 달성하려면 학생은 <b>어떤 내용(What)</b>을 알아야 할까요?</p>
+                            <p class="text-xs text-slate-500 mb-1">Q. 달성해야 할 <b>주요 지식(What)</b>은 무엇인가요?</p>
                             <input type="text" id="in-noun" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal outline-none" placeholder="예: 음악 요소, 역사적 배경">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-orange-600 mb-1">동사 (수행/기능)</label>
-                            <p class="text-xs text-slate-500 mb-1">Q. 이 성취기준을 달성했음을 <b>어떤 행동(How)</b>으로 증명하게 할까요?</p>
-                            <input type="text" id="in-verb" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none" placeholder="예: 표현하다, 비교하다, 비평하다">
+                            <p class="text-xs text-slate-500 mb-1">Q. 이해의 6가지 측면 중 어떤 <b>행동(How)</b>으로 증명할까요?</p>
+                            <div class="flex gap-2 mb-2">
+                                <select id="in-verb-category" class="w-1/2 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none text-sm bg-white">
+                                    <option value="">- 측면 선택 -</option>
+                                    <option value="설명">설명</option>
+                                    <option value="해석">해석</option>
+                                    <option value="적용">적용</option>
+                                    <option value="관점">관점</option>
+                                    <option value="공감">공감</option>
+                                    <option value="자기지식">자기지식</option>
+                                    <option value="custom">✎ 직접 입력...</option>
+                                </select>
+                                <select id="in-verb-select" class="w-1/2 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500 outline-none text-sm bg-white">
+                                    <option value="">- 동사 선택 -</option>
+                                </select>
+                            </div>
+                            <input type="text" id="in-verb-custom" class="hidden w-full p-2 border border-orange-400 rounded focus:ring-2 focus:ring-orange-500 outline-none text-sm bg-white" placeholder="수행 동사를 직접 입력하세요">
                         </div>
                     </div>
                 </div>
@@ -148,30 +162,12 @@
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-slate-700 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">5</span> 수행평가 설계 (GRASPS)</h2>
                 <p class="guide-text">전통적 지필 평가에서 벗어나, 학생이 실제 현실과 유사한 상황 속에서 역할을 맡아 결과물을 만들어내는 참평가(Authentic Assessment)를 설계합니다.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label>
-                        <input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 수행과제의 실제적 목표는?">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label>
-                        <input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생이 맡을 가상의 직업/역할은?">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label>
-                        <input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 결과물을 보여줄 대상(타겟)은?">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label>
-                        <input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생들이 직면한 구체적인 문제 상황은?">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-bold text-teal mb-1">P (Product, 산출물)</label>
-                        <input type="text" id="in-p" class="w-full p-2 text-sm border border-teal-300 focus:border-teal rounded bg-teal_light" placeholder="최종적으로 제출하거나 발표할 결과물은? (예: 팟캐스트, 포스터, 작곡 앱)">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label>
-                        <input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 과제가 성공적이라고 판단할 채점 기준(루브릭)은?">
-                    </div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">G (Goal, 목표)</label><input type="text" id="in-g" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 수행과제의 실제적 목표는?"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">R (Role, 역할)</label><input type="text" id="in-r" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생이 맡을 가상의 직업/역할은?"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">A (Audience, 청중)</label><input type="text" id="in-a" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 결과물을 보여줄 대상(타겟)은?"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">S (Situation, 상황)</label><input type="text" id="in-s1" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="학생들이 직면한 구체적인 문제 상황은?"></div>
+                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-teal mb-1">P (Product, 산출물)</label><input type="text" id="in-p" class="w-full p-2 text-sm border border-teal-300 focus:border-teal rounded bg-teal_light" placeholder="최종적으로 제출하거나 발표할 결과물은? (예: 팟캐스트, 포스터, 작곡 앱)"></div>
+                    <div class="sm:col-span-2"><label class="block text-sm font-bold text-slate-700 mb-1">S (Standards, 평가 기준)</label><input type="text" id="in-s2" class="w-full p-2 text-sm border border-gray-300 rounded" placeholder="이 과제가 성공적이라고 판단할 채점 기준(루브릭)은?"></div>
                 </div>
             </section>
         </form>
@@ -298,6 +294,16 @@
             }
         };
 
+        // ★ [이해의 6가지 측면별 행동 동사 데이터 (사진 자료 참조)] ★
+        const understandingVerbs = {
+            "설명": ["논증한다", "도출한다", "기술한다", "설계한다", "공개한다", "표현한다", "권유한다", "수업한다", "정당화한다", "모형을 만든다", "예측한다", "증명한다", "보여 준다", "종합한다"],
+            "해석": ["유추한다", "비평한다", "문서로 증명한다", "평가한다", "설명한다", "판단한다", "의미를 만든다", "뜻이 통한다", "비유한다", "행간을 읽는다", "대표한다", "이야기를 말한다", "번역한다"],
+            "적용": ["적용한다", "구축한다", "창조한다", "고친다", "결정한다", "공개한다", "발명한다", "수행한다", "산출한다", "제안한다", "재결합한다", "검사한다", "사용한다"],
+            "관점": ["분석한다", "주장한다", "비교한다", "대조한다", "비평한다", "추론한다"],
+            "공감": ["역할을 가정한다", "믿는다", "~와/과 같다", "열려 있다", "고려한다", "상상한다", "관련짓는다", "역할 놀이를 한다"],
+            "자기지식": ["알아챈다", "파악한다", "인식한다", "반성한다", "자기 평가한다"]
+        };
+
         document.getElementById('page-title').textContent = `${curriculumData.subject}수업 디자인 도우미`;
         document.getElementById('ui-subject-title').textContent = curriculumData.subject;
         document.getElementById('ui-subject-sub').textContent = curriculumData.subject;
@@ -325,8 +331,6 @@
             }
             selectEl.addEventListener('change', updateOutput);
             customEl.addEventListener('input', updateOutput);
-            
-            // ★ 수정된 부분: 기본값을 0번째 항목("- 선택 안 함 -")으로 설정합니다.
             selectEl.selectedIndex = 0; 
             updateOutput();
         }
@@ -336,6 +340,7 @@
         populateSelectWithCustom('context', curriculumData.contexts);
         populateSelectWithCustom('sdg', curriculumData.sdgs); 
 
+        // 성취기준 로직
         const schoolSelect = document.getElementById('in-school');
         const standardSelect = document.getElementById('in-standard');
         const standardCustom = document.getElementById('in-standard-custom');
@@ -352,7 +357,6 @@
             options.forEach(std => standardSelect.add(new Option(std, std)));
             standardSelect.add(new Option("✎ 성취기준 직접 입력...", "custom"));
 
-            // ★ 수정된 부분: 성취기준 기본값도 0번째 항목("- 선택 안 함 -")으로 설정합니다.
             standardSelect.selectedIndex = 0;
             updateStandardDisplay();
         }
@@ -376,7 +380,48 @@
         standardCustom.addEventListener('input', updateStandardDisplay);
         updateStandards();
 
-        const normalMappings = ['title', 'noun', 'verb', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
+        // ★ 동사(수행/기능) 2단계 드롭다운 로직 ★
+        const verbCategory = document.getElementById('in-verb-category');
+        const verbSelect = document.getElementById('in-verb-select');
+        const verbCustom = document.getElementById('in-verb-custom');
+        const outVerb = document.getElementById('out-verb');
+
+        function updateVerbOutput() {
+            if (verbCategory.value === 'custom') {
+                outVerb.textContent = verbCustom.value || '-';
+            } else if (verbCategory.value === "") {
+                outVerb.textContent = '-';
+            } else {
+                // 상위 개념과 하위 개념을 예쁘게 조합해서 출력합니다.
+                outVerb.textContent = verbSelect.value ? `[${verbCategory.value}] ${verbSelect.value}` : `[${verbCategory.value}] -`;
+            }
+        }
+
+        verbCategory.addEventListener('change', (e) => {
+            const cat = e.target.value;
+            verbSelect.innerHTML = '<option value="">- 동사 선택 -</option>';
+
+            if (cat === 'custom') {
+                verbSelect.classList.add('hidden');
+                verbCustom.classList.remove('hidden');
+            } else {
+                verbSelect.classList.remove('hidden');
+                verbCustom.classList.add('hidden');
+
+                if (understandingVerbs[cat]) {
+                    understandingVerbs[cat].forEach(v => {
+                        verbSelect.add(new Option(v, v));
+                    });
+                }
+            }
+            updateVerbOutput();
+        });
+
+        verbSelect.addEventListener('change', updateVerbOutput);
+        verbCustom.addEventListener('input', updateVerbOutput);
+
+        // 일반 텍스트 인풋 동기화
+        const normalMappings = ['title', 'noun', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
         normalMappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
             const outputEl = document.getElementById('out-' + id);
@@ -399,11 +444,20 @@
                 return document.getElementById('in-' + id).value;
             }
 
+            // 동사 값 추출 로직
+            let finalVerb = "";
+            if (verbCategory.value === 'custom') {
+                finalVerb = verbCustom.value;
+            } else if (verbCategory.value !== "") {
+                finalVerb = `[${verbCategory.value}] ${verbSelect.value}`;
+            }
+
             let lessonData = {
                 subject: curriculumData.subject,
                 school: schoolSelect.options[schoolSelect.selectedIndex].text,
                 domain: getVal('domain'),
                 standard: getVal('standard'),
+                verb: finalVerb, // 수정된 동사 반영
                 lens: getVal('lens'),
                 context: getVal('context'),
                 sdg: getVal('sdg')
