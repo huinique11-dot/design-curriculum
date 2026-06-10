@@ -45,7 +45,6 @@
         </div>
 
         <form id="lesson-form" class="space-y-6 sm:space-y-8">
-            
             <section class="bg-teal_light p-4 sm:p-6 rounded-xl border border-teal/20">
                 <h2 class="text-lg sm:text-xl font-bold mb-2 flex items-center"><span class="bg-teal text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span> 대전제 설정</h2>
                 <p class="guide-text">수업의 뼈대가 될 기초 정보를 설정합니다. 우리 아이들의 발달 단계에 맞는 영역을 고민해 보세요.</p>
@@ -81,12 +80,10 @@
                         <label class="block text-sm font-semibold mb-1">성취기준 선택</label>
                         <select id="in-standard" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-navy outline-none text-sm bg-white"></select>
                         <textarea id="in-standard-custom" rows="2" class="hidden w-full p-2 mt-2 border border-navy rounded focus:ring-2 focus:ring-navy outline-none text-sm" placeholder="성취기준을 직접 입력하세요."></textarea>
-                        
                         <div class="mt-2 p-3 bg-white border border-blue-200 rounded text-sm text-blue-900 leading-relaxed font-medium shadow-inner" id="full-standard-box">
                             성취기준 전체 내용이 여기에 표시됩니다.
                         </div>
                     </div>
-                    
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-teal mb-1">명사 (핵심 지식/개념)</label>
@@ -172,20 +169,24 @@
             </section>
         </form>
 
-        <div class="mt-8 flex flex-col sm:flex-row gap-4 pb-10 lg:pb-4">
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 pb-4">
             <button id="print-btn" onclick="window.print()" class="w-full sm:flex-1 bg-gray-800 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition">🖨️ PDF 굽기 (인쇄)</button>
             <button id="save-btn" onclick="saveToNotion()" class="w-full sm:flex-1 bg-teal text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-teal-600 transition">✨ 노션에 자랑하기</button>
+        </div>
+        
+        <div class="text-center text-sm text-gray-400 font-medium pb-8 lg:pb-4">
+            &copy; 휘니크프로젝트
         </div>
     </div>
 
     <div id="right-panel" class="w-full lg:w-1/2 lg:h-full lg:overflow-y-auto bg-gray-200 p-4 sm:p-8 flex justify-center">
-        <div class="a4-paper relative text-navy">
+        <div class="a4-paper relative text-navy flex flex-col">
             <div class="text-center mb-6 border-b-2 border-navy pb-4">
                 <h2 class="text-sm sm:text-lg text-gray-500 font-bold mb-2">2022 개정 기반 <span id="out-subject-title">과목</span>수업 디자인서</h2>
                 <h1 id="out-title" class="text-2xl sm:text-4xl font-extrabold break-words">수업 제목이 표시됩니다</h1>
             </div>
 
-            <div class="space-y-5">
+            <div class="space-y-5 flex-grow">
                 <div class="flex border-t border-b border-gray-300 py-2 text-sm sm:text-base">
                     <div class="w-1/3 sm:w-1/4 font-bold text-teal">대상 / 영역</div>
                     <div class="w-2/3 sm:w-3/4"><span id="out-school">중학교 1~3학년</span> / <span id="out-domain">-</span></div>
@@ -242,8 +243,9 @@
                 </div>
             </div>
             
-            <div class="mt-6 text-center text-gray-400 text-xs font-bold">
-                전국<span id="footer-subject">과목</span>수업자랑 - Lesson Designer
+            <div class="mt-8 text-center text-gray-400 text-xs font-bold border-t border-gray-200 pt-4">
+                전국<span id="footer-subject">과목</span>수업자랑 - Lesson Designer<br/>
+                &copy; 휘니크프로젝트
             </div>
         </div>
     </div>
@@ -294,7 +296,6 @@
             }
         };
 
-        // ★ [이해의 6가지 측면별 행동 동사 데이터 (사진 자료 참조)] ★
         const understandingVerbs = {
             "설명": ["논증한다", "도출한다", "기술한다", "설계한다", "공개한다", "표현한다", "권유한다", "수업한다", "정당화한다", "모형을 만든다", "예측한다", "증명한다", "보여 준다", "종합한다"],
             "해석": ["유추한다", "비평한다", "문서로 증명한다", "평가한다", "설명한다", "판단한다", "의미를 만든다", "뜻이 통한다", "비유한다", "행간을 읽는다", "대표한다", "이야기를 말한다", "번역한다"],
@@ -340,7 +341,6 @@
         populateSelectWithCustom('context', curriculumData.contexts);
         populateSelectWithCustom('sdg', curriculumData.sdgs); 
 
-        // 성취기준 로직
         const schoolSelect = document.getElementById('in-school');
         const standardSelect = document.getElementById('in-standard');
         const standardCustom = document.getElementById('in-standard-custom');
@@ -380,7 +380,6 @@
         standardCustom.addEventListener('input', updateStandardDisplay);
         updateStandards();
 
-        // ★ 동사(수행/기능) 2단계 드롭다운 로직 ★
         const verbCategory = document.getElementById('in-verb-category');
         const verbSelect = document.getElementById('in-verb-select');
         const verbCustom = document.getElementById('in-verb-custom');
@@ -392,7 +391,6 @@
             } else if (verbCategory.value === "") {
                 outVerb.textContent = '-';
             } else {
-                // 상위 개념과 하위 개념을 예쁘게 조합해서 출력합니다.
                 outVerb.textContent = verbSelect.value ? `[${verbCategory.value}] ${verbSelect.value}` : `[${verbCategory.value}] -`;
             }
         }
@@ -420,7 +418,6 @@
         verbSelect.addEventListener('change', updateVerbOutput);
         verbCustom.addEventListener('input', updateVerbOutput);
 
-        // 일반 텍스트 인풋 동기화
         const normalMappings = ['title', 'noun', 'life', 'soi', 'g', 'r', 'a', 's1', 'p', 's2'];
         normalMappings.forEach(id => {
             const inputEl = document.getElementById('in-' + id);
@@ -444,7 +441,6 @@
                 return document.getElementById('in-' + id).value;
             }
 
-            // 동사 값 추출 로직
             let finalVerb = "";
             if (verbCategory.value === 'custom') {
                 finalVerb = verbCustom.value;
@@ -457,7 +453,7 @@
                 school: schoolSelect.options[schoolSelect.selectedIndex].text,
                 domain: getVal('domain'),
                 standard: getVal('standard'),
-                verb: finalVerb, // 수정된 동사 반영
+                verb: finalVerb, 
                 lens: getVal('lens'),
                 context: getVal('context'),
                 sdg: getVal('sdg')
